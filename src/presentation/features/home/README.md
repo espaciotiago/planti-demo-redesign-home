@@ -1,6 +1,6 @@
-# Home feature
+# Home presentation
 
-Esta feature contendrá la demo de la Home y la progresión simulada de sus estados:
+Esta feature contiene la demo de la Home y la progresión simulada de sus estados:
 
 1. Verificación en proceso.
 2. Cuenta aprobada sin saldo.
@@ -8,4 +8,18 @@ Esta feature contendrá la demo de la Home y la progresión simulada de sus esta
 4. Tarjeta activa colapsada.
 5. Tarjeta activa expandida.
 
-Los archivos de `state/` son contratos de presentación, no reglas de negocio ni conexión con servicios.
+Los componentes compuestos viven en `components/` y reciben estado y callbacks por props. Los
+archivos de `state/` son contratos de presentación; esta capa no contiene reglas de negocio,
+navegación ni acceso a datos.
+
+Componentes disponibles:
+
+- `HomeHeader`
+- `AccountProgressCard`
+- `BalanceOverview`
+- `FirstDepositCard`
+- `ExplorePlentiPanel`
+- `PlentiCardModule`
+- `MovementsSection`
+- `RewardsPocketSummary`
+- `CardManagementPanel`

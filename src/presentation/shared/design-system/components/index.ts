@@ -7,3 +7,4 @@ export * from './AppIconButton';
 export * from './AppListRow';
 export * from './AppSurface';
 export * from './AppText';
+export * from './PlentiMark';

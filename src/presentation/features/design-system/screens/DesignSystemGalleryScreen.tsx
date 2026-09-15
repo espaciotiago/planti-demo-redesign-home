@@ -3,6 +3,17 @@ import { Pressable, ScrollView, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import {
+  AccountProgressCard,
+  BalanceOverview,
+  CardManagementPanel,
+  ExplorePlentiPanel,
+  FirstDepositCard,
+  HomeHeader,
+  MovementsSection,
+  PlentiCardModule,
+  RewardsPocketSummary,
+} from '../../home/components';
+import {
   AppAmount,
   AppBadge,
   AppBottomNavigation,
@@ -100,6 +111,60 @@ export function DesignSystemGalleryScreen({
             })}
           </View>
         </AppSurface>
+
+        <View style={{ gap: theme.spacing.sm }}>
+          <AppSectionHeader title="Bloques de Home · V4" />
+          <AppText tone="secondary" variant="caption">
+            Componentes compuestos que se reutilizarán para construir los cinco estados de la demo.
+          </AppText>
+
+          <AppText tone="secondary" variant="caption">Cabecera</AppText>
+          <HomeHeader hasUnreadNotifications name="Santiago" />
+
+          <AppText tone="secondary" variant="caption">Validación pendiente</AppText>
+          <AccountProgressCard />
+
+          <AppText tone="secondary" variant="caption">Saldo y operaciones</AppText>
+          <BalanceOverview amount="$0.00" />
+
+          <AppText tone="secondary" variant="caption">Conversión al primer depósito</AppText>
+          <FirstDepositCard />
+
+          <AppText tone="secondary" variant="caption">Exploración durante la validación</AppText>
+          <ExplorePlentiPanel />
+
+          <AppText tone="secondary" variant="caption">Adquisición de tarjeta</AppText>
+          <PlentiCardModule variant="request" />
+
+          <AppText tone="secondary" variant="caption">Tarjeta activa colapsada</AppText>
+          <PlentiCardModule variant="active" />
+
+          <AppText tone="secondary" variant="caption">Movimientos con actividad</AppText>
+          <MovementsSection
+            items={[
+              {
+                amount: '$250.00',
+                date: 'Hoy, 9:42 a. m.',
+                direction: 'in',
+                id: 'top-up',
+                title: 'Recarga',
+              },
+              {
+                amount: '$18.50',
+                date: 'Ayer',
+                direction: 'out',
+                id: 'purchase',
+                title: 'Compra',
+              },
+            ]}
+          />
+
+          <AppText tone="secondary" variant="caption">Bolsillo de recompensas</AppText>
+          <RewardsPocketSummary amount="$2.48" />
+
+          <AppText tone="secondary" variant="caption">Gestión de tarjeta desplegada</AppText>
+          <CardManagementPanel />
+        </View>
 
         <View style={{ gap: theme.spacing.sm }}>
           <AppSectionHeader title="Tipografía y color" />
