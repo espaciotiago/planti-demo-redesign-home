@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
-import { useMemo, useReducer, useState } from 'react';
-import { ScrollView, View } from 'react-native';
+import { useEffect, useMemo, useReducer, useRef, useState } from 'react';
+import { ScrollView, View, type NativeScrollEvent, type NativeSyntheticEvent } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import {
@@ -57,11 +57,30 @@ export function HomeDemoScreen() {
   const insets = useSafeAreaInsets();
   const [state, dispatch] = useReducer(homeDemoReducer, initialHomeDemoState);
   const [preview, setPreview] = useState<PreviewContent | null>(null);
+  const homeScrollRef = useRef<ScrollView>(null);
+  const homeScrollOffset = useRef(0);
 
   const stage = getHomeDemoStage(state);
   const isPending = state.verification === 'pending';
   const hasBalance = state.balance !== '0.00';
   const hasActiveCard = state.card === 'active';
+
+  useEffect(() => {
+    // The Home sheet stays mounted while the card is revealed. Restore the last
+    // position after its viewport changes so it does not snap back to the top.
+    const frame = requestAnimationFrame(() => {
+      homeScrollRef.current?.scrollTo({
+        animated: false,
+        y: homeScrollOffset.current,
+      });
+    });
+
+    return () => cancelAnimationFrame(frame);
+  }, [state.cardExpanded]);
+
+  const handleHomeScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
+    homeScrollOffset.current = Math.max(0, event.nativeEvent.contentOffset.y);
+  };
 
   const showPreview = (title: string, description: string) => {
     setPreview({ title, description });
@@ -234,6 +253,8 @@ export function HomeDemoScreen() {
                   paddingBottom: insets.bottom + 150,
                   paddingHorizontal: theme.spacing.md,
                 }}
+                alwaysBounceVertical={false}
+                bounces={false}
                 showsVerticalScrollIndicator={false}
               >
                 <CardManagementPanel
@@ -267,11 +288,19 @@ export function HomeDemoScreen() {
             }
           >
             <ScrollView
+              ref={homeScrollRef}
               contentContainerStyle={{
                 gap: theme.spacing.lg,
+                flexGrow: 1,
                 paddingBottom: insets.bottom + 180,
                 paddingHorizontal: theme.spacing.md,
               }}
+              alwaysBounceVertical={false}
+              bounces={false}
+              onScroll={handleHomeScroll}
+              scrollEventThrottle={16}
+              removeClippedSubviews={false}
+              style={{ flex: 1, minHeight: 0 }}
               scrollEnabled={!state.cardExpanded}
               showsVerticalScrollIndicator={false}
             >
@@ -306,6 +335,8 @@ export function HomeDemoScreen() {
               paddingBottom: insets.bottom + 180,
               paddingHorizontal: theme.spacing.md,
             }}
+            alwaysBounceVertical={false}
+            bounces={false}
             showsVerticalScrollIndicator={false}
           >
             {isPending ? (

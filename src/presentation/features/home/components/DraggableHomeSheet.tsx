@@ -34,6 +34,10 @@ export function DraggableHomeSheet({
   const gestureStartY = useRef(collapsedOffset);
   const currentY = useRef(collapsedOffset);
   const expandedOffset = Math.max(collapsedOffset + 160, containerHeight - 136);
+  const visibleHeight = Math.max(
+    1,
+    containerHeight - (cardExpanded ? expandedOffset : collapsedOffset),
+  );
 
   useEffect(() => {
     const listener = sheetY.addListener(({ value }) => {
@@ -105,7 +109,7 @@ export function DraggableHomeSheet({
           borderTopLeftRadius: theme.radii.xl,
           borderTopRightRadius: theme.radii.xl,
           borderWidth: 1,
-          bottom: -expandedOffset,
+          bottom: 0,
           left: 0,
           overflow: 'hidden',
           position: 'absolute',
@@ -132,7 +136,16 @@ export function DraggableHomeSheet({
             }}
           />
         </Pressable>
-        <View style={{ flex: 1 }}>{children}</View>
+        <View
+          style={{
+            flexGrow: 0,
+            flexShrink: 1,
+            height: visibleHeight,
+            minHeight: 0,
+          }}
+        >
+          {children}
+        </View>
       </Animated.View>
     </View>
   );
