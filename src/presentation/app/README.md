@@ -1,3 +1,3 @@
 # App
 
-Aquí vivirá el componente raíz de composición cuando iniciemos la implementación. Por ahora se mantiene vacío para no introducir UI antes de definir el primer paso.
+`PresentationProviders` concentra el tema, las safe areas y la carga de tipografías. El próximo paso de implementación deberá envolver la primera pantalla con este componente.

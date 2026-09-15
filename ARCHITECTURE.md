@@ -9,7 +9,10 @@ src/presentation/
   app/              # Punto de composición futuro de la demo
   navigation/       # Contratos de navegación y tabs visuales
   theme/            # Tokens y configuración light/dark
-  shared/           # Componentes, iconos y tipos reutilizables
+  shared/
+    design-system/  # Átomos y patrones reutilizables, agnósticos de features
+    icons/          # Tipos compartidos de iconografía
+    components/     # Reservado para composición compartida futura
   features/
     home/
       screens/      # Pantalla Home y sus estados visuales

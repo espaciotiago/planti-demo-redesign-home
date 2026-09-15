@@ -1,20 +1,18 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { useState } from 'react';
+
+import { PresentationProviders } from './src/presentation/app/PresentationProviders';
+import { DesignSystemGalleryScreen } from './src/presentation/features/design-system/screens/DesignSystemGalleryScreen';
+import type { ThemePreference } from './src/presentation/theme/theme-mode';
 
 export default function App() {
+  const [themePreference, setThemePreference] = useState<ThemePreference>('system');
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <PresentationProviders themePreference={themePreference}>
+      <DesignSystemGalleryScreen
+        onThemePreferenceChange={setThemePreference}
+        themePreference={themePreference}
+      />
+    </PresentationProviders>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
