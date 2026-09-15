@@ -10,7 +10,7 @@ Demo del rediseño de la vista principal de la app de Plenti, enfocado en:
 
 | Light | Dark |
 | --- | --- |
-| [demo light.mp4](demo/demo%20light.mp4) | [demo dark.mp4](demo/demo%20dark.mp4) |
+| https://github.com/user-attachments/assets/a32e3aff-3262-40b2-b2f5-3db46a8ec35d | https://github.com/user-attachments/assets/c4d46154-83de-4fa1-b109-b80cb834d4a8 |
 
 ## Diseños originales
 
