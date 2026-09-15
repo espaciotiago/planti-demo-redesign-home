@@ -23,3 +23,13 @@ Componentes disponibles:
 - `MovementsSection`
 - `RewardsPocketSummary`
 - `CardManagementPanel`
+
+## Flujo local
+
+`HomeDemoScreen` usa `homeDemoReducer` para mantener independientes los tres estados que cambian
+en la demo: validación, saldo y tarjeta. Los CTA de recarga y tarjeta modifican únicamente su eje.
+
+Cuando la tarjeta está activa, `DraggableHomeSheet` mantiene el header y las dos capas montadas en
+la misma vista: los controles de la tarjeta quedan detrás y Home funciona como un sheet frontal. Un
+tap en la tarjeta baja el sheet y el handle permite arrastrarlo de nuevo hacia arriba. El control
+flotante `DemoFlowControl` permite avanzar o reiniciar la secuencia sin servicios externos.

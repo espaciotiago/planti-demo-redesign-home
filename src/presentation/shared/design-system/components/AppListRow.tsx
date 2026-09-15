@@ -48,7 +48,7 @@ export function AppListRow({
           </AppText>
         ) : null}
       </View>
-      {trailing ?? (onPress ? <Ionicons color={theme.colors.actionPrimary} name="chevron-forward" size={20} /> : null)}
+      {trailing ?? (onPress ? <Ionicons color={theme.colors.link} name="chevron-forward" size={20} /> : null)}
     </>
   );
 

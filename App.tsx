@@ -1,18 +1,10 @@
-import { useState } from 'react';
-
 import { PresentationProviders } from './src/presentation/app/PresentationProviders';
-import { DesignSystemGalleryScreen } from './src/presentation/features/design-system/screens/DesignSystemGalleryScreen';
-import type { ThemePreference } from './src/presentation/theme/theme-mode';
+import { HomeDemoScreen } from './src/presentation/features/home/screens/HomeDemoScreen';
 
 export default function App() {
-  const [themePreference, setThemePreference] = useState<ThemePreference>('system');
-
   return (
-    <PresentationProviders themePreference={themePreference}>
-      <DesignSystemGalleryScreen
-        onThemePreferenceChange={setThemePreference}
-        themePreference={themePreference}
-      />
+    <PresentationProviders>
+      <HomeDemoScreen />
     </PresentationProviders>
   );
 }
